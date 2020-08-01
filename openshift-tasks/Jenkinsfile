@@ -7,7 +7,7 @@ def mvnCmd = "mvn -s ./openshift-tasks/nexus_settings.xml"
 // Set Development and Production Project Names
 def devProject = "${prefix}-tasks-dev"
 def prodProject = "${prefix}-tasks-prod"
-def imageName = "${GUID}-tasks"
+def imageName = "${prefix}-tasks"
 // Set the tag for the development image: version + build number
 def devTag = "0.0-0"
 // Set the tag for the production image: version
