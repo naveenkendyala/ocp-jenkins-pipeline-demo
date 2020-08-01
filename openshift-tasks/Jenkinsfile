@@ -12,7 +12,7 @@ def imageName = "${prefix}-tasks"
 def devTag = "0.0-0"
 // Set the tag for the production image: version
 def prodTag = "0.0"
-def destApp = "tasks-blue"
+def destApp = "tasks-green"
 def activeApp = ""
 
 pipeline {
@@ -194,6 +194,7 @@ pipeline {
             openshift.withProject("${prodProject}") {
               activeApp = openshift.selector("route", "tasks").object().spec.to.name
               if (activeApp == "tasks-green") {
+                echo "Inside the IF condition"
                 destApp = "tasks-blue"
               }
               echo "Active Application:      " + activeApp
