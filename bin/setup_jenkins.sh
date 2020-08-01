@@ -61,7 +61,7 @@ oc set build-secret --source bc/tasks gitea-secret -n ${GUID}-jenkins
 
 
 # Set up ConfigMap with Jenkins Agent definition
-oc create -f ../manifests/agent-cm.yaml -n ${GUID}-jenkins
+oc create -f ./manifests/agent-cm.yaml -n ${GUID}-jenkins
 
 # ========================================
 # No changes are necessary below this line
