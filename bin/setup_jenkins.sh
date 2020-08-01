@@ -100,4 +100,4 @@ oc policy add-role-to-user admin system:serviceaccount:gpte-jenkins:homework-jen
 oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-dev
 oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-prod
 
-echo ******* Done executing the setup_jenkins.sh script**********
+echo "******* Done executing the setup_jenkins.sh script**********"
