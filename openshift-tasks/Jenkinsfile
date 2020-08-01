@@ -89,7 +89,7 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject("${devProject}") {
-              openshift.selector("bc", "tasks").startBuild("--from-file=./openshift-tasks/target/openshift-tasks.war", "--wait=true")
+              openshift.selector("bc", "${prefix}-tasks").startBuild("--from-file=./openshift-tasks/target/openshift-tasks.war", "--wait=true")
 
               // OR use the file you just published into Nexus:
               // "--from-file=http://homework-nexus.gpte-hw-cicd.svc.cluster.local:8081/repository/releases/org/jboss/quickstarts/eap/tasks/${version}/tasks-${version}.war"
