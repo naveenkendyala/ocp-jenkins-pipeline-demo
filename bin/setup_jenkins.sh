@@ -91,14 +91,11 @@ while : ; do
   echo "...no. Sleeping 10 seconds."
   sleep 10
 done
-#oc policy add-role-to-user admin system:serviceaccount:gpte-jenkins:homework-jenkins -n ${GUID}-jenkins
-#oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-dev
-#oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-prod
-#oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-dev
-#oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-prod
-#oc policy add-role-to-group system:image-puller system:serviceaccounts:${GUID}-tasks-prod -n ${GUID}-tasks-dev
+
 oc policy add-role-to-user admin system:serviceaccount:gpte-jenkins:homework-jenkins -n ${GUID}-jenkins
 oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-dev
 oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-prod
+#oc create -f ./manifests/tasks-pipeline.yml -n ${GUID}-jenkins
+#oc set build-secret --source bc/tasks-pipeline gitea-secret -n ${GUID}-jenkins
 
 echo "******* Done executing the setup_jenkins.sh script**********"
