@@ -3,7 +3,7 @@
 // Implement the sections marked with "TBD:"
 
 
-tasks-pipeline {
+pipeline {
   agent {
     kubernetes {
       label "maven-skopeo-agent"
