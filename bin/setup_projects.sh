@@ -29,4 +29,4 @@ fi
 
 
 
-echo ****** Done setting up projects ********
+echo "****** Done setting up projects ********"
