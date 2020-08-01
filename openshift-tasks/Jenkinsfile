@@ -82,7 +82,7 @@ pipeline {
     stage('Build and Tag OpenShift Image') {
       steps {
         echo "Building OpenShift container image tasks:${devTag}"
-        sleep(300)
+        sh "ls -lrt ./openshift-tasks/target/"
         // Start Binary Build in OpenShift using the file we just published
         // The filename is openshift-tasks.war in the 'target' directory of your current
         // Jenkins workspace
