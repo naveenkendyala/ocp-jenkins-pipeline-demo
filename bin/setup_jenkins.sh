@@ -95,7 +95,7 @@ done
 oc policy add-role-to-user admin system:serviceaccount:gpte-jenkins:homework-jenkins -n ${GUID}-jenkins
 oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-dev
 oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-prod
-#oc create -f ./manifests/tasks-pipeline.yml -n ${GUID}-jenkins
-#oc set build-secret --source bc/tasks-pipeline gitea-secret -n ${GUID}-jenkins
+oc create -f ./manifests/tasks-pipeline.yml -n ${GUID}-jenkins
+oc set build-secret --source bc/tasks-pipeline gitea-secret -n ${GUID}-jenkins
 
 echo "******* Done executing the setup_jenkins.sh script**********"
