@@ -102,4 +102,3 @@ oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -
 oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-prod
 
 echo "******* Done executing the setup_jenkins.sh script**********"
-sleep 300
