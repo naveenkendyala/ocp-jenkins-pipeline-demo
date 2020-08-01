@@ -2,7 +2,7 @@ kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
   name: tasks-pipeline
-  namespace: sarat-test
+  namespace: 800b
   selfLink: >-
     /apis/build.openshift.io/v1/namespaces/sarat-test/buildconfigs/tasks-pipeline
   uid: 04a94278-fc1c-4118-a8c0-61f8e5569a49
