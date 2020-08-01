@@ -28,6 +28,7 @@ pipeline {
     mvnCmd = "source /usr/local/bin/scl_enable && mvn -s ./nexus_settings.xml -X"
 
     // Images and Projects
+    GUID = "800b"
     imageName   = "${GUID}-tasks"
     devProject  = "${GUID}-tasks-dev"
     prodProject = "${GUID}-tasks-prod"
