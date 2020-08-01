@@ -23,7 +23,7 @@ pipeline {
       inheritFrom "maven"
       containerTemplate {
         name "jnlp"
-        image "image-registry.openshift-image-registry.svc:5000/${GUID}-jenkins/jenkins-agent-appdev:latest"
+        image "image-registry.openshift-image-registry.svc:5000/${prefix}-jenkins/jenkins-agent-appdev:latest"
         resourceRequestMemory "2Gi"
         resourceLimitMemory "3Gi"
         resourceRequestCpu "2"
