@@ -62,6 +62,7 @@ oc set build-secret --source bc/tasks gitea-secret -n ${GUID}-jenkins
 
 # Set up ConfigMap with Jenkins Agent definition
 oc create -f ./manifests/agent-cm.yaml -n ${GUID}-jenkins
+echo ******CREATED CONFIG MAP*******
 
 # ========================================
 # No changes are necessary below this line
@@ -101,3 +102,4 @@ oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -
 oc policy add-role-to-user admin system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-tasks-prod
 
 echo "******* Done executing the setup_jenkins.sh script**********"
+sleep 300
