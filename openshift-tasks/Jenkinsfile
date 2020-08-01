@@ -95,7 +95,7 @@ pipeline {
               // OR use the file you just published into Nexus:
               // "--from-file=http://homework-nexus.gpte-hw-cicd.svc.cluster.local:8081/repository/releases/org/jboss/quickstarts/eap/tasks/${version}/tasks-${version}.war"
               echo "Tagging the project"
-              openshift.tag("tasks:latest", "tasks:${devTag}")
+              openshift.tag("${imageName}:latest", "${imageName}:${devTag}")
             }
           }
         }
@@ -110,7 +110,7 @@ pipeline {
           openshift.withCluster() {
             openshift.withProject("${devProject}") {
               // OpenShift 4
-              openshift.set("image", "dc/tasks", "tasks=image-registry.openshift-image-registry.svc:5000/${devProject}/tasks:${devTag}")
+              openshift.set("image", "dc/tasks", "tasks=image-registry.openshift-image-registry.svc:5000/${devProject}/${imageName}:${devTag}")
 
               // Recreate the Config Map which contains the users for the Tasks application
               // (just in case the properties files changed in the latest commit)
@@ -171,12 +171,12 @@ pipeline {
       steps {
         echo "Copy image to Nexus Container Registry"
         script {
-          sh "skopeo copy --src-tls-verify=false --dest-tls-verify=false --src-creds openshift:\$(oc whoami -t) --dest-creds admin:app_deploy docker://image-registry.openshift-image-registry.svc.cluster.local:5000/${devProject}/tasks:${devTag} docker://nexus-registry.${prefix}-nexus.svc.cluster.local:5000/tasks:${devTag}"
+          sh "skopeo copy --src-tls-verify=false --dest-tls-verify=false --src-creds openshift:\$(oc whoami -t) --dest-creds admin:app_deploy docker://image-registry.openshift-image-registry.svc.cluster.local:5000/${devProject}/${imageName}:${devTag} docker://nexus-registry.${prefix}-nexus.svc.cluster.local:5000/${imageName}:${devTag}"
 
           // Tag the built image with the production tag.
           openshift.withCluster() {
             openshift.withProject("${prodProject}") {
-              openshift.tag("${devProject}/tasks:${devTag}", "${devProject}/tasks:${prodTag}")
+              openshift.tag("${devProject}/${imageName}:${devTag}", "${devProject}/${imageName}:${prodTag}")
             }
           }
         }
