@@ -17,8 +17,20 @@ def activeApp = ""
 
 pipeline {
   agent {
-    // Using the Jenkins Agent Pod that we defined earlier
-    label "maven-appdev"
+    kubernetes {
+      label "maven-skopeo-agent"
+      cloud "openshift"
+      inheritFrom "maven"
+      containerTemplate {
+        name "jnlp"
+        image "image-registry.openshift-image-registry.svc:5000/${GUID}-jenkins/jenkins-agent-appdev:latest"
+        resourceRequestMemory "2Gi"
+        resourceLimitMemory "3Gi"
+        resourceRequestCpu "2"
+        resourceLimitCpu "2"
+      }
+
+    }
   }
   stages {
     // Checkout Source Code
