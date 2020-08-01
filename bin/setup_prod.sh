@@ -25,3 +25,5 @@ oc apply -f manifests/tasks-svc-green.yaml -n ${GUID}-tasks-prod
 
 # Expose Green service as route -> Force Green -> Blue deployment on first run
 oc apply -f manifests/tasks-route-prod.yaml -n ${GUID}-tasks-prod
+
+echo ***** Done setting up prod tasks *********
