@@ -12,7 +12,7 @@ def imageName = "${prefix}-tasks"
 def devTag = "0.0-0"
 // Set the tag for the production image: version
 def prodTag = "0.0"
-def destApp = "tasks-green"
+def destApp = "tasks-blue"
 def activeApp = ""
 
 pipeline {
