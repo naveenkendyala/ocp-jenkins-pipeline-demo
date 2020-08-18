@@ -36,7 +36,7 @@ All the dependencies of this demo run in containers
 - Jenkins
 
 
-Before you run this pipeline replace all the parameters enclosed between %% and %% with appropriate values. The file include
+Before you run this pipeline replace all the parameters enclosed between %% and %% with appropriate values. The files include
 
 - bin/setup_jenkins.sh
 
