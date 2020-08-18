@@ -1,0 +1,13 @@
+= Script Execution Order 
+
+- setup_projects.sh
+
+- setup_dev.sh
+
+- setup_prod.sh
+
+- setup_sonarqube.sh
+
+- setup_nexus.sh
+
+- setup_jenskin.sh
