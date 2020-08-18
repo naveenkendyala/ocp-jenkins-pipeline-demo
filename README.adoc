@@ -43,3 +43,5 @@ Before you run this pipeline replace all the parameters enclosed between %% and 
 - manifests/tasks-pipeline.yml
 
 - openshift-tasks/Jenkinsfile
+
+- openshift-tasks/nexus_settings.xml
