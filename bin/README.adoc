@@ -1,5 +1,7 @@
 = Script Execution Order 
 
+== For setting up the demo 
+
 - setup_projects.sh
 
 - setup_dev.sh
@@ -11,3 +13,10 @@
 - setup_nexus.sh
 
 - setup_jenskin.sh
+
+
+== For cleanup
+
+- clean.sh
+
+Each of these scripts requires one or more arguments. When you execute the script without any arugments or missing arguments the script will let you know what agruments you are missing.
