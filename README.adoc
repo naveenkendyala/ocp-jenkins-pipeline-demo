@@ -34,3 +34,12 @@ All the dependencies of this demo run in containers
 - Nexus Container Registry
 
 - Jenkins
+
+
+Before you run this pipeline replace all the parameters enclosed between %% and %% with appropriate values. The file include
+
+- bin/setup_jenkins.sh
+
+- manifests/tasks-pipeline.yml
+
+- openshift-tasks/Jenkinsfile
