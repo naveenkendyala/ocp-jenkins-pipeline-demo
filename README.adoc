@@ -1,11 +1,48 @@
-= OpenShift 4 Advanced Application Deployment Homework Template
+= OpenShift 4 Jenkins Pipeline Demo
 
-== Tasks Demo Application
+== About this demo application
 
-This is an example JEE application to be used in the OpenShift 4 Advanced Application Deployment Homework Assignment. Read these instructions carefully to successfully complete the homework assignment.
+=== This pipeline 
 
-You are expected to clone this repository into your own private repository at https://homework-gitea.apps.shared.na.openshift.opentlc.com.
+1. Pulls a sample java code from the source code repository
 
-Your Homework assignment will be graded by executing the pipeline at https://github.com/redhat-gpte-devopsautomation/ocp4_app_deploy_homework_grading.
+2. Builds the WAR file
 
-Make sure to read the README in the `openshift-tasks` folder for details on how to configure the tasks application.
+3. Mimics unit testing
+
+4. Performs code quality check and pushes the results to SonarQube
+
+5. Pushes the build artifacts to Nexus
+
+6. Builds the image and pushes it to Openshift's internal registry
+
+7. Deploys the applications to Dev (namespace)
+
+8. Mimics Integration Testing
+
+9. Pushes the image from Openshift's internal registry to Nexus' container registry
+
+10. Deploy the application to production (namespace) in a blue/green deployment
+
+11. Waits for user approval before switching the route
+
+=== Note: All the dependencies of this demo run in containers
+
+- SonarQube
+
+- Nexus Artifact Repo
+
+- Nexus Container Registry
+
+- Jenkins
+
+
+=== Before you run this pipeline replace all the parameters enclosed between %% and %% with appropriate values. The files include
+
+- bin/setup_jenkins.sh
+
+- manifests/tasks-pipeline.yml
+
+- openshift-tasks/Jenkinsfile
+
+- openshift-tasks/nexus_settings.xml
