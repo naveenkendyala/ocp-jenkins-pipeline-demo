@@ -8,7 +8,7 @@ fi
 
 GUID=$1
 echo "Deploying Nexus"
-
+oc project $1-Nexus
 oc adm policy add-scc-to-user anyuid -z default
 oc new-app sonatype/nexus3:3.21.2 --name=nexus
 oc expose svc nexus
