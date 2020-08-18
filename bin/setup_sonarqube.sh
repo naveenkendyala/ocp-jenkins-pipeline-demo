@@ -8,6 +8,7 @@ fi
 
 GUID=$1
 echo "Deploying SonarQube"
+oc project $1-sonarqube
 #oc new-app --template=postgresql-ephemeral --param POSTGRESQL_USER=sonar --param POSTGRESQL_PASSWORD=sonar --param POSTGRESQL_DATABASE=sonar --param VOLUME_CAPACITY=4Gi --labels=app=sonarqube_db
 #oc set volume rc/pos --add --overwrite --name=v1 --type=persistentVolumeClaim
 oc new-app --template=postgresql-ephemeral --param POSTGRESQL_USER=sonar --param POSTGRESQL_PASSWORD=sonar --param POSTGRESQL_DATABASE=sonar --labels=app=sonarqube_db
