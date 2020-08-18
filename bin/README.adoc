@@ -19,4 +19,6 @@
 
 - clean.sh
 
-Note: Each of these scripts requires one or more arguments. When you execute the script without any arugments or missing arguments the script will let you know what agruments you are missing.
+== Note: 
+
+Each of these scripts requires one or more arguments. When you execute the script without any arugments or missing arguments the script will let you know what agruments you are missing.
