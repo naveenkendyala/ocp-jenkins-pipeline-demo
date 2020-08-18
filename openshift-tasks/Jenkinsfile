@@ -1,5 +1,5 @@
 // Set your project Prefix using your GUID
-def prefix = "800b"
+def prefix = "%%GUID%%"
 
 // Set variable globally to be available in all stages
 // Set Maven command to always include Nexus Settings
@@ -24,10 +24,6 @@ pipeline {
     // Checkout Source Code
     stage('Checkout Source') {
       steps {
-        // Replace the credentials with your credentials.
-        //git credentialsId: '32f0ca77-b23c-46f4-88ae-aa4350fd12ed',
-        //url: 'https://gogs-gogs-student14-gogs.apps.cluster-a0cf.a0cf.sandbox55.opentlc.com/CICDLabs/openshift-tasks-private.git'
-        // or when using the Pipeline from the repo itself:
         checkout scm
         script {
           def pom = readMavenPom file: './openshift-tasks/pom.xml'
@@ -64,7 +60,7 @@ pipeline {
       steps {
         script {
           echo "Running Code Analysis"
-          sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://homework-sonarqube.gpte-hw-cicd.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectVersion=${devTag} -f ./openshift-tasks/pom.xml "
+          sh "${mvnCmd} sonar:sonar -Dsonar.host.url=%%sonarqube_URL%%/ -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectVersion=${devTag} -f ./openshift-tasks/pom.xml "
         }
       }
     }
@@ -73,7 +69,7 @@ pipeline {
     stage('Publish to Nexus') {
       steps {
         echo "Publish to Nexus"
-        sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://homework-nexus.gpte-hw-cicd.svc.cluster.local:8081/repository/releases -f ./openshift-tasks/pom.xml "
+        sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::%%nexus_URL%%/repository/releases -f ./openshift-tasks/pom.xml "
       }
     }
     // Build the OpenShift Image in OpenShift and tag it.
@@ -90,9 +86,6 @@ pipeline {
             openshift.withProject("${devProject}") {
               echo "Building the project"
               openshift.selector("bc", "tasks").startBuild("--from-file=./openshift-tasks/target/openshift-tasks.war", "--wait=true")
-
-              // OR use the file you just published into Nexus:
-              // "--from-file=http://homework-nexus.gpte-hw-cicd.svc.cluster.local:8081/repository/releases/org/jboss/quickstarts/eap/tasks/${version}/tasks-${version}.war"
               echo "Tagging the project"
               openshift.tag("${imageName}:latest", "${imageName}:${devTag}")
             }
@@ -172,7 +165,7 @@ pipeline {
         script {
           sh "ls -lrt /usr/bin"
           //sleep(300)
-          sh "skopeo copy --src-tls-verify=false --dest-tls-verify=false --src-creds openshift:\$(oc whoami -t) --dest-creds admin:redhat docker://image-registry.openshift-image-registry.svc.cluster.local:5000/${devProject}/${imageName}:${devTag} docker://homework-nexus-registry.gpte-hw-cicd.svc.cluster.local:5000/${imageName}:${devTag}"
+          sh "skopeo copy --src-tls-verify=false --dest-tls-verify=false --src-creds openshift:\$(oc whoami -t) --dest-creds %%nexus_user%%:%%nexus_passwd%% docker://image-registry.openshift-image-registry.svc.cluster.local:5000/${devProject}/${imageName}:${devTag} docker://%%nexus_registry_URL%%/${imageName}:${devTag}"
 
           // Tag the built image with the production tag.
           openshift.withCluster() {
@@ -241,8 +234,7 @@ pipeline {
               def route = openshift.selector("route/tasks").object()
               route.spec.to.name = "${destApp}"
               openshift.apply(route)
-              sleep(10)
-            }
+           }
           }
         }
       }
