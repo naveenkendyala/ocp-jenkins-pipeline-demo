@@ -3,6 +3,7 @@
 == About this demo application
 
 This pipeline 
+
 1. Pulls a sample java code from the source code repository
 
 2. Builds the WAR file
