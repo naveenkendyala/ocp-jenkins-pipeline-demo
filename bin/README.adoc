@@ -2,6 +2,8 @@
 
 == For setting up the demo 
 
+- setup_manifests.sh
+
 - setup_projects.sh
 
 - setup_dev.sh
