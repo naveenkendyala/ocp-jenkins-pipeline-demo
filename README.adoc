@@ -2,7 +2,7 @@
 
 == About this demo application
 
-This pipeline 
+=== This pipeline 
 
 1. Pulls a sample java code from the source code repository
 
@@ -26,7 +26,7 @@ This pipeline
 
 11. Waits for user approval before switching the route
 
-All the dependencies of this demo run in containers
+=== Note: All the dependencies of this demo run in containers
 
 - SonarQube
 
@@ -37,7 +37,7 @@ All the dependencies of this demo run in containers
 - Jenkins
 
 
-Before you run this pipeline replace all the parameters enclosed between %% and %% with appropriate values. The files include
+=== Before you run this pipeline replace all the parameters enclosed between %% and %% with appropriate values. The files include
 
 - bin/setup_jenkins.sh
 
