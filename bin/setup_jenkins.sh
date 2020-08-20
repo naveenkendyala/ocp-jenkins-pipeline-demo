@@ -32,11 +32,9 @@ USER 1001' --name=jenkins-agent-appdev -n ${GUID}-jenkins
 oc create secret generic git-secret --from-literal=username=%%git_username%% --from-literal=password=%%git_password%%
 
 
-sleep 60
+#oc new-app --template=eap72-basic-s2i --param APPLICATION_NAME=tasks --param SOURCE_REPOSITORY_URL=%%git_repo%% --param SOURCE_REPOSITORY_REF=master --param CONTEXT_DIR=/ --param MAVEN_MIRROR_URL=https://homework-nexus-registry.apps.shared-na4.na4.openshift.opentlc.com/repository/maven-all-public
 
-oc new-app --template=eap72-basic-s2i --param APPLICATION_NAME=tasks --param SOURCE_REPOSITORY_URL=%%git_repo%% --param SOURCE_REPOSITORY_REF=master --param CONTEXT_DIR=/ --param MAVEN_MIRROR_URL=https://homework-nexus-registry.apps.shared-na4.na4.openshift.opentlc.com/repository/maven-all-public
-
-oc set build-secret --source bc/tasks git-secret
+#oc set build-secret --source bc/tasks git-secret
 
 # Set up ConfigMap with Jenkins Agent definition
 oc create -f ./manifests/agent-cm.yaml -n ${GUID}-jenkins
