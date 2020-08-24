@@ -3,7 +3,7 @@ apiVersion: build.openshift.io/v1
 metadata:
   name: tasks-pipeline
   spec:
-  nodeSelector: null
+  nodeSelector: {}
   output: {}
   resources: {}
   successfulBuildsHistoryLimit: 5
