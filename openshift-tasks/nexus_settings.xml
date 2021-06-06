@@ -10,7 +10,7 @@
   </mirrors>
   <servers>
     <server>
-      <id>nexus1</id>
+      <id>nexus</id>
       <username>admin</username>
       <password>cb967d90-e8cf-4adb-aa1f-babc6dd5583e</password>
     </server>
