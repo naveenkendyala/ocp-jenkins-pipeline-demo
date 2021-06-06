@@ -106,8 +106,8 @@ pipeline {
               
               // Update the Environment Variable VERSION
               def dc1 = openshift.selector("dc/tasks").object()
-              dc1.spec.template.spec.containers[0].env[0].name=[VERSION: ${devTag} (tasks-dev)]
-              //openshift.apply(dc)
+              dc1.spec.template.spec.containers[0].env[0].name=[VERSION: '${devTag} (tasks-dev)']
+              openshift.apply(dc1)
 
               // Recreate the Config Map which contains the users for the Tasks application
               // (just in case the properties files changed in the latest commit)
