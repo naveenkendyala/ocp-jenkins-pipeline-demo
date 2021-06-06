@@ -18,6 +18,6 @@ spec:
     type: Git
     git:
       uri: >-
-        https://github.com/naveenkendyala/ocp-jenkins-pipeline-demo
+        https://github.com/yssaratchandra/ocp-jenkins-pipeline-demo.git
   triggers: []
   runPolicy: Serial
