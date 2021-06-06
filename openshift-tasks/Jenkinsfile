@@ -60,7 +60,7 @@ pipeline {
       steps {
         script {
           echo "Running Code Analysis"
-          sh "${mvnCmd} sonar:sonar -Dsonar.host.url=%%sonarqube_URL%%/ -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectVersion=${devTag} -f ./openshift-tasks/pom.xml "
+          sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube-9c33-sonarqube.apps.cluster-9c33.9c33.example.opentlc.com/ -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectVersion=${devTag} -f ./openshift-tasks/pom.xml "
         }
       }
     }
