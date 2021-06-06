@@ -103,11 +103,7 @@ pipeline {
             openshift.withProject("${devProject}") {
               // OpenShift 4
               openshift.set("image", "dc/tasks", "tasks=image-registry.openshift-image-registry.svc:5000/${devProject}/${imageName}:${devTag}")
-              
-              // Update the Environment Variable VERSION
-              def dc1 = openshift.selector("dc/tasks").object()
-              dc1.spec.template.spec.containers[0].env[0].name=[VERSION: '${devTag} (tasks-dev)']
-              openshift.apply(dc1)
+              openshift.set("env", "dc/tasks", "tasks=[VERSION='${devTag} (tasks-dev)]")
 
               // Recreate the Config Map which contains the users for the Tasks application
               // (just in case the properties files changed in the latest commit)
