@@ -69,7 +69,7 @@ pipeline {
     stage('Publish to Nexus') {
       steps {
         echo "Publish to Nexus"
-        sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::%%nexus_URL%%/repository/releases -f ./openshift-tasks/pom.xml "
+        sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus-9c33-nexus.apps.cluster-9c33.9c33.example.opentlc.com/repository/releases -f ./openshift-tasks/pom.xml "
       }
     }
     // Build the OpenShift Image in OpenShift and tag it.
@@ -165,7 +165,7 @@ pipeline {
         script {
           sh "ls -lrt /usr/bin"
           //sleep(300)
-          sh "skopeo copy --src-tls-verify=false --dest-tls-verify=false --src-creds openshift:\$(oc whoami -t) --dest-creds %%nexus_user%%:%%nexus_passwd%% docker://image-registry.openshift-image-registry.svc.cluster.local:5000/${devProject}/${imageName}:${devTag} docker://%%nexus_registry_URL%%/${imageName}:${devTag}"
+          sh "skopeo copy --src-tls-verify=false --dest-tls-verify=false --src-creds openshift:\$(oc whoami -t) --dest-creds admin:cb967d90-e8cf-4adb-aa1f-babc6dd5583e docker://image-registry.openshift-image-registry.svc.cluster.local:5000/${devProject}/${imageName}:${devTag} docker://http://nexus-9c33-nexus.apps.cluster-9c33.9c33.example.opentlc.com/${imageName}:${devTag}"
 
           // Tag the built image with the production tag.
           openshift.withCluster() {
