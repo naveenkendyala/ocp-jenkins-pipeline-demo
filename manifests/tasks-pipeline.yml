@@ -8,6 +8,7 @@ metadata:
   resources: {}
   successfulBuildsHistoryLimit: 5
   failedBuildsHistoryLimit: 5
+spec:
   strategy:
     type: JenkinsPipeline
     jenkinsPipelineStrategy:
@@ -17,6 +18,6 @@ metadata:
     type: Git
     git:
       uri: >-
-        %%git_repo%%
+        https://github.com/naveenkendyala/ocp-jenkins-pipeline-demo
   triggers: []
   runPolicy: Serial
