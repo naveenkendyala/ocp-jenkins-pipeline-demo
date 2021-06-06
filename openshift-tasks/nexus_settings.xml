@@ -4,13 +4,13 @@
     <mirror>
       <id>Nexus</id>
       <name>Nexus Public Mirror</name>
-      <url>http://nexus-tools-pipeline.apps.cluster-9c33.9c33.example.opentlc.com/repository/maven-public/</url>
+      <url>http://nexus-9c33-nexus.apps.cluster-9c33.9c33.example.opentlc.com/repository/maven-all-public/</url>
       <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
   <servers>
     <server>
-      <id>nexus</id>
+      <id>nexus1</id>
       <username>admin</username>
       <password>cb967d90-e8cf-4adb-aa1f-babc6dd5583e</password>
     </server>
