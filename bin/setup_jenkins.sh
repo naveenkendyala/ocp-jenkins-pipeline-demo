@@ -16,8 +16,8 @@ oc project $GUID-jenkins
 oc new-app jenkins-persistent --param ENABLE_OAUTH=true --param MEMORY_LIMIT=2Gi --param VOLUME_CAPACITY=4Gi --param DISABLE_ADMINISTRATIVE_MONITORS=true -n ${GUID}-jenkins
 oc set resources dc jenkins --limits=memory=2Gi,cpu=2 --requests=memory=1Gi,cpu=500m -n ${GUID}-jenkins
 
-oc create -f 12982167_srinivas.sarat.yadavalli-pull-secret.yml -n ${GUID}-jenkins
-oc secrets link builder 12982167-srinivas.sarat.yadavalli-pull-secret -n ${GUID}-jenkins
+oc create -f 12821208-nkendyal-pull-secret.yml -n ${GUID}-jenkins
+oc secrets link builder 12821208-nkendyal-pull-secret -n ${GUID}-jenkins
 
 oc new-build --strategy=docker -D $'FROM registry.access.redhat.com/ubi8/go-toolset:latest as builder\n
 ENV SKOPEO_VERSION=v1.0.0\n
